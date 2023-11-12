@@ -41,6 +41,14 @@ public class BookValidatableResponse {
 
         return this;
     }
+
+public BookValidatableResponse checkErrorResponse(BookResponce expected){
+        response.then().body("timestamp", Matchers.notNullValue());
+        Assert.assertEquals(model, expected);
+
+        return this;
+}
+
     public Integer getId(){
         return response.jsonPath().getInt("id");
     }

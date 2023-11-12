@@ -4,5 +4,7 @@ public enum Category {
     Adventures,
     Detective,
     Horror,
+    Fiction,
+    Unknown,
     Thriller;
 }
