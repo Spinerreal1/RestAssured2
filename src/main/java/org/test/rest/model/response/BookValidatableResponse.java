@@ -12,7 +12,9 @@ public class BookValidatableResponse {
 
     public BookValidatableResponse (Response response){
         this.response = response;
-        model = response.as(BookResponce.class);
+        if (response.asString().length() > 0) {
+            model = response.as(BookResponce.class);
+        }
     }
 
     public BookValidatableResponse checkStatusCode(int statusCode){

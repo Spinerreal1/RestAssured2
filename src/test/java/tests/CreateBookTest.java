@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class CreateBookTest extends BooksStoreTestBase {
-    @Test(dataProvider = "createBooks")
+    @Test(dataProvider = "positive", dataProviderClass = BookData.class)
     public void testCreateBook(Book book){
 
 
@@ -31,24 +31,5 @@ public class CreateBookTest extends BooksStoreTestBase {
                 checkId(response.getId()).
                 checkLastUpdated().
                 checkBook(book);
-    }
-
-    @DataProvider
-    public Object[][] createBooks(){
-        return new Object[][]{
-                {Book.defaultOf()},
-                {Book.defaultOf().setTitle(RandomStringUtils.randomAlphabetic(3))},
-                {Book.defaultOf().setTitle(RandomStringUtils.randomAlphabetic(256))},
-                {Book.defaultOf().setDescription(RandomStringUtils.randomAlphabetic(3))},
-                {Book.defaultOf().setDescription(RandomStringUtils.randomAlphabetic(512))},
-                {Book.defaultOf().setAuthor(RandomStringUtils.randomAlphabetic(3))},
-                {Book.defaultOf().setAuthor(RandomStringUtils.randomAlphabetic(100))},
-                {Book.defaultOf().setPrice(0)},
-                {Book.defaultOf().setCount(0)},
-                {Book.defaultOf().setCategory(Category.Detective)},
-                {Book.defaultOf().setCategory(Category.Fiction)},
-                {Book.defaultOf().setCategory(Category.Horror)},
-                {Book.defaultOf().setCategory(Category.Thriller)},
-        };
     }
 }

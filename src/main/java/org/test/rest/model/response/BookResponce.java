@@ -23,9 +23,16 @@ public class BookResponce extends Book {
     private String error;
     private String path;
 
-    private static BookResponce createError400(){
+    public static BookResponce error400(String path){
         return new BookResponce().setStatus(400).
                 setError("Bad Request").
-                setPath("/rest-api/books");
+                setPath(path);
+    }
+
+    public static BookResponce createError400(){
+        return error400("/rest-api/books");
+    }
+    public static BookResponce updateError400(Integer id){
+        return error400(String.format("/rest-api/books/%s", id));
     }
 }
